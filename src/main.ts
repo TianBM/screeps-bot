@@ -1,5 +1,9 @@
 import { ErrorMapper } from "utils/ErrorMapper";
 
+import { spawnRun } from './spawn/spawn';
+
+import { carryRun } from "creeps/carryRun";
+
 declare global {
   /*
     Example types, expand on these or remove them and add your own.
@@ -40,4 +44,9 @@ export const loop = ErrorMapper.wrapLoop(() => {
       delete Memory.creeps[name];
     }
   }
+
+  for(const i in Game.spawns) {
+    spawnRun(Game.spawns[i], 'builder');
+  }
+
 });
